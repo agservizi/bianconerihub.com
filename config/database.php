@@ -4,6 +4,11 @@
  * BiancoNeriHub - Social network per tifosi della Juventus
  */
 
+// Debug temporaneo
+error_log("Caricamento configurazione database...");
+error_log("Directory corrente: " . __DIR__);
+error_log("File .env esiste: " . (file_exists(__DIR__ . '/../.env') ? 'Sì' : 'No'));
+
 // Includiamo il gestore delle variabili d'ambiente
 require_once __DIR__ . '/env.php';
 
@@ -14,7 +19,13 @@ function debugEnv() {
         'DB_USER' => env('DB_USER', 'non impostato'),
         'DB_NAME' => env('DB_NAME', 'non impostato'),
         'ENV_FILE_EXISTS' => file_exists(__DIR__ . '/../.env') ? 'Sì' : 'No',
-        'SERVER_VARS' => isset($_SERVER['DB_HOST']) ? 'Impostato' : 'Non impostato'
+        'ENV_FILE_PATH' => realpath(__DIR__ . '/../.env'),
+        'ENV_FILE_READABLE' => is_readable(__DIR__ . '/../.env') ? 'Sì' : 'No',
+        'ENV_FILE_PERMS' => file_exists(__DIR__ . '/../.env') ? substr(sprintf('%o', fileperms(__DIR__ . '/../.env')), -4) : 'N/A',
+        'SERVER_VARS' => isset($_SERVER['DB_HOST']) ? 'Impostato' : 'Non impostato',
+        'GETENV_DB_HOST' => getenv('DB_HOST'),
+        'CURRENT_DIR' => __DIR__,
+        'PHP_ERROR_LOG' => error_get_last() ? json_encode(error_get_last()) : 'Nessun errore'
     ];
     return $debug;
 }
@@ -36,11 +47,22 @@ if (isset($_GET['debug_env'])) {
 // Debug - Uncomment per testare
 // die(json_encode(debugEnv()));
 
+// Debug temporaneo
+error_log("Caricamento configurazione database...");
+$envFile = __DIR__ . '/../.env';
+error_log("Cercando file .env in: " . $envFile);
+error_log("File .env esiste: " . (file_exists($envFile) ? 'Sì' : 'No'));
+
 // Otteniamo le credenziali del database dalle variabili d'ambiente
 $dbHost = env('DB_HOST', 'localhost');
 $dbUser = env('DB_USER', 'root');
 $dbPass = env('DB_PASS', '');
 $dbName = env('DB_NAME', 'bianconerihub');
+
+// Debug - log delle variabili ottenute (rimuovere in produzione)
+error_log("DB_HOST: " . $dbHost);
+error_log("DB_USER: " . $dbUser);
+error_log("DB_NAME: " . $dbName);
 
 // Inizializziamo la connessione direttamente al database specifico
 try {

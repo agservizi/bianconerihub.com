@@ -11,20 +11,34 @@
  * @return bool True se il file è stato caricato, false altrimenti
  */
 function loadEnv($envPath = null) {
-    // Cerca nella root del progetto
-    $envPath = realpath(__DIR__ . '/../.env');
-    if (!$envPath || !file_exists($envPath)) {
-        error_log('File .env non trovato in: ' . __DIR__ . '/../.env');
+    // Se non è specificato un percorso, cerca nella root del progetto
+    if ($envPath === null) {
+        $envPath = __DIR__ . '/../.env';
+    }
+    
+    $realPath = realpath($envPath);
+    
+    // Debug - Log del percorso e dei permessi
+    error_log("Tentativo di caricamento .env da: " . $envPath);
+    error_log("Percorso reale: " . ($realPath ? $realPath : "non trovato"));
+    error_log("Il file esiste? " . (file_exists($envPath) ? "Sì" : "No"));
+    error_log("Permessi file: " . (file_exists($envPath) ? decoct(fileperms($envPath) & 0777) : "N/A"));
+    error_log("File leggibile? " . (is_readable($envPath) ? "Sì" : "No"));
+    
+    if (!file_exists($envPath)) {
+        error_log('File .env non trovato in: ' . $envPath);
         return false;
     }
+    
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     if ($lines === false) {
         error_log('Impossibile leggere il file .env: ' . $envPath);
         return false;
     }
     foreach ($lines as $line) {
+        $line = trim($line);        // Ignora linee vuote e commenti
         $line = trim($line);
-        if ($line === '' || strpos($line, '#') === 0 || strpos($line, '//') === 0) {
+        if ($line === '' || $line[0] === '#' || substr($line, 0, 2) === '//') {
             continue;
         }
         if (strpos($line, '=') !== false) {
@@ -50,9 +64,17 @@ function loadEnv($envPath = null) {
  * @return mixed Valore della variabile o valore predefinito
  */
 function env($key, $default = null) {
+    // Prima controlla nelle variabili d'ambiente PHP
     $value = getenv($key);
     
+    // Se non trovato, cerca in $_ENV e $_SERVER
     if ($value === false) {
+        $value = isset($_ENV[$key]) ? $_ENV[$key] : (isset($_SERVER[$key]) ? $_SERVER[$key] : false);
+    }
+    
+    // Se ancora non trovato, ritorna il default
+    if ($value === false) {
+        error_log("Variabile d'ambiente non trovata: " . $key);
         return $default;
     }
     
