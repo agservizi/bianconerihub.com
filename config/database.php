@@ -4,24 +4,24 @@
  * BiancoNeriHub - Social network per tifosi della Juventus
  */
 
-// Includiamo il file con le credenziali del database
-$credentialsFile = __DIR__ . '/db_credentials.php';
+// Includiamo il gestore delle variabili d'ambiente
+require_once __DIR__ . '/env.php';
 
-// Verifichiamo se il file delle credenziali esiste
-if (file_exists($credentialsFile)) {
-    require_once $credentialsFile;
-} else {
-    die("Errore: File di credenziali database non trovato.");
-}
+// Otteniamo le credenziali del database dalle variabili d'ambiente
+$dbHost = env('DB_HOST', 'localhost');
+$dbUser = env('DB_USER', 'root');
+$dbPass = env('DB_PASS', '');
+$dbName = env('DB_NAME', 'bianconerihub');
 
 // Inizializziamo la connessione direttamente al database specifico
 try {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
     
     // Imposta il set di caratteri per la connessione
     $conn->set_charset("utf8mb4");
 } catch (Exception $e) {
-    die("Errore di connessione al database: " . $e->getMessage());
+    error_log("Errore di connessione al database: " . $e->getMessage());
+    die("Impossibile connettersi al database. Contattare l'amministratore del sito.");
 }
 
 // Verifichiamo la connessione
