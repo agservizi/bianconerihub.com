@@ -187,4 +187,39 @@ function truncateText($text, $length = 100, $append = '...') {
     
     return $text;
 }
+
+/**
+ * Mostra i messaggi flash
+ */
+function displayFlashMessages() {
+    if (isset($_SESSION['flash_messages']) && !empty($_SESSION['flash_messages'])) {
+        foreach ($_SESSION['flash_messages'] as $type => $message) {
+            $alertClass = 'alert-info';
+            $icon = 'info-circle';
+            
+            switch ($type) {
+                case 'success':
+                    $alertClass = 'alert-success';
+                    $icon = 'check-circle';
+                    break;
+                case 'error':
+                    $alertClass = 'alert-danger';
+                    $icon = 'exclamation-circle';
+                    break;
+                case 'warning':
+                    $alertClass = 'alert-warning';
+                    $icon = 'exclamation-triangle';
+                    break;
+            }
+            
+            echo '<div class="alert ' . $alertClass . ' alert-dismissible fade show" role="alert">';
+            echo '<i class="fas fa-' . $icon . ' me-2"></i>' . htmlspecialchars($message);
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            echo '</div>';
+        }
+        
+        // Puliamo i messaggi dopo averli mostrati
+        unset($_SESSION['flash_messages']);
+    }
+}
 ?>

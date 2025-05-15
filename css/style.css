@@ -5,399 +5,154 @@
 
 /* Variabili colori Juventus */
 :root {
-    --juve-black: #000000;
-    --juve-white: #ffffff;
-    --juve-gold: #c1af7c;
-    --juve-grey: #f0f0f0;
-    --juve-dark-grey: #333333;
-    --primary: #000000;
-    --secondary: #c1af7c;
+    --juventus-black: #000000;
+    --juventus-white: #ffffff;
+    --juventus-gold: #c5a47e;
+    --juventus-gray: #4a4a4a;
+    --juventus-light-gray: #f5f5f5;
 }
 
 /* Personalizzazione colori Bootstrap */
 .bg-primary {
-    background-color: var(--juve-black) !important;
+    background-color: var(--juventus-black) !important;
 }
 
 .bg-secondary {
-    background-color: var(--juve-gold) !important;
+    background-color: var(--juventus-gray) !important;
 }
 
 .text-primary {
-    color: var(--juve-black) !important;
+    color: var(--juventus-black) !important;
 }
 
 .text-secondary {
-    color: var(--juve-gold) !important;
+    color: var(--juventus-gray) !important;
 }
 
 .btn-primary {
-    background-color: var(--juve-black);
-    border-color: var(--juve-black);
+    background-color: var(--juventus-black);
+    border-color: var(--juventus-black);
+    color: var(--juventus-white);
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: #333333 !important;
-    border-color: #333333 !important;
+    background-color: var(--juventus-gray) !important;
+    border-color: var(--juventus-gray) !important;
 }
 
 .btn-secondary {
-    background-color: var(--juve-gold);
-    border-color: var(--juve-gold);
-    color: var(--juve-black);
+    background-color: var(--juventus-gray);
+    border-color: var(--juventus-gray);
 }
 
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
-    background-color: #b09d6a !important;
-    border-color: #b09d6a !important;
-    color: var(--juve-black) !important;
-}
-
-.btn-outline-primary {
-    color: var(--juve-black);
-    border-color: var(--juve-black);
-}
-
-.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
-    background-color: var(--juve-black) !important;
-    border-color: var(--juve-black) !important;
-    color: var(--juve-white) !important;
-}
-
-.btn-outline-secondary {
-    color: var(--juve-gold);
-    border-color: var(--juve-gold);
-}
-
-.btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active {
-    background-color: var(--juve-gold) !important;
-    border-color: var(--juve-gold) !important;
-    color: var(--juve-black) !important;
+    background-color: var(--juventus-black) !important;
+    border-color: var(--juventus-black) !important;
 }
 
 /* Stile generale */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--juventus-light-gray);
 }
 
 .main-container {
-    margin-top: 80px;
-    margin-bottom: 30px;
-    min-height: calc(100vh - 320px);
+    min-height: calc(100vh - 200px);
 }
 
 /* Navbar */
 .navbar {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, var(--juve-black) 50%, var(--juve-black) 50%) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar-brand {
-    font-weight: 700;
-    color: var(--juve-white) !important;
-}
-
-.navbar-brand img {
-    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--juventus-white);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    color: var(--juve-gold);
-}
-
-.navbar-dark .navbar-nav .active > .nav-link {
-    color: var(--juve-gold);
-}
-
-/* Footer */
-footer {
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, var(--juve-black) 50%, var(--juve-black) 50%) !important;
-}
-
-footer a {
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: var(--juve-gold) !important;
-}
-
-.social-icons a:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
+    color: var(--juventus-gold);
 }
 
 /* Card */
 .card {
     border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .card-header {
-    font-weight: 600;
-    border-bottom: none;
+    background-color: var(--juventus-black);
+    color: var(--juventus-white);
+    font-weight: bold;
 }
 
 /* Form controls */
 .form-control:focus {
-    border-color: var(--juve-gold);
-    box-shadow: 0 0 0 0.25rem rgba(193, 175, 124, 0.25);
+    border-color: var(--juventus-gold);
+    box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25);
 }
 
-/* Lista gruppi */
-.list-group-item.active {
-    background-color: var(--juve-black);
-    border-color: var(--juve-black);
+/* Badge personalizzato */
+.badge.bg-danger {
+    background-color: #dc3545 !important;
 }
 
-.list-group-item:hover {
-    background-color: var(--juve-grey);
+/* Footer */
+footer {
+    background-color: var(--juventus-black);
+    color: var(--juventus-white);
+    padding: 2rem 0;
+    margin-top: 3rem;
 }
 
-/* Post e commenti */
-.post {
-    transition: transform 0.2s ease;
+footer a {
+    color: var(--juventus-gold);
+    text-decoration: none;
 }
 
-.post:hover {
-    transform: translateY(-2px);
+footer a:hover {
+    color: var(--juventus-white);
+    text-decoration: none;
 }
 
-.comment-content {
-    border-radius: 15px;
-    background-color: #f8f9fa;
-    padding: 10px 15px;
+/* Bottoni outline */
+.btn-outline-primary {
+    color: var(--juventus-black);
+    border-color: var(--juventus-black);
 }
 
-/* Profili utente */
-.profile-header {
-    background: linear-gradient(to right, var(--juve-black), #333);
-    color: white;
-    padding: 30px 0;
-    margin-bottom: 30px;
-    border-radius: 0 0 10px 10px;
+.btn-outline-primary:hover {
+    background-color: var(--juventus-black);
+    color: var(--juventus-white);
 }
 
-.profile-stats {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 20px;
+/* Custom utilities */
+.text-gold {
+    color: var(--juventus-gold) !important;
 }
 
-.profile-stat {
-    margin: 0 15px;
+.bg-gold {
+    background-color: var(--juventus-gold) !important;
 }
 
-.profile-stat-count {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--juve-gold);
-}
-
-.profile-pic {
-    border: 5px solid white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Feed post */
-.post-create-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-
-/* Bottoni sociali */
-.like-button.active {
-    background-color: var(--juve-black);
-    border-color: var(--juve-black);
-    color: white;
-}
-
-/* Notifiche */
-.notification-item {
-    border-left: 3px solid transparent;
-    transition: background-color 0.2s ease;
-}
-
-.notification-item:hover {
-    background-color: var(--juve-grey);
-}
-
-.notification-item.unread {
-    border-left-color: var(--juve-gold);
-    background-color: rgba(193, 175, 124, 0.1);
-}
-
-/* Badge */
-.badge-notification {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-}
-
-/* Animazioni */
-.fade-in {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Stile per la landing page */
-.hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/stadium.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 100px 0;
-    margin-bottom: 50px;
-    border-radius: 0 0 10px 10px;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.feature-card {
-    text-align: center;
-    padding: 30px 20px;
-    border-radius: 10px;
-    height: 100%;
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: var(--juve-gold);
-}
-
-.testimonial-card {
-    text-align: center;
-    padding: 30px;
-    border-radius: 10px;
-    height: 100%;
-}
-
-.testimonial-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    border: 3px solid var(--juve-gold);
-}
-
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
     .main-container {
-        margin-top: 70px;
+        padding-top: 1rem;
     }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .profile-header {
-        padding: 20px 0;
-    }
-    
-    .profile-stat-count {
-        font-size: 1.2rem;
-    }
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-    body.dark-mode {
-        background-color: #1a1a1a;
-        color: #f0f0f0;
-    }
-    
-    body.dark-mode .card {
-        background-color: #2a2a2a;
-        color: #f0f0f0;
-    }
-    
-    body.dark-mode .list-group-item {
-        background-color: #2a2a2a;
-        color: #f0f0f0;
-        border-color: #444;
-    }
-    
-    body.dark-mode .form-control {
-        background-color: #333;
-        border-color: #444;
-        color: #f0f0f0;
-    }
-    
-    body.dark-mode .comment-content {
-        background-color: #333;
-    }
-}
-
-/* Zebra stripes - effetti Juventus */
-.juve-stripes {
-    background: repeating-linear-gradient(
-        90deg,
-        var(--juve-black),
-        var(--juve-black) 20px,
-        var(--juve-white) 20px,
-        var(--juve-white) 40px
-    );
-}
-
-/* Highlight per nuove funzionalità */
-.new-feature {
-    position: relative;
-}
-
-.new-feature::after {
-    content: 'NEW';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: var(--juve-gold);
-    color: var(--juve-black);
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 10px;
 }
