@@ -11,37 +11,26 @@
  * @return bool True se il file è stato caricato, false altrimenti
  */
 function loadEnv($envPath = null) {
-    // Se non è specificato un percorso, usa la directory radice del progetto
-    if (is_null($envPath)) {
-        $envPath = __DIR__ . '/../.env';
-    }
-    
-    // Verifica se il file .env esiste
+    // Cerca SEMPRE nella root del progetto
+    $envPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
     if (!file_exists($envPath)) {
-        error_log("File .env non trovato in: " . $envPath);
+        error_log('File .env non trovato in: ' . $envPath);
         return false;
     }
-    
-    // Leggi il file .env
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     if ($lines === false) {
-        error_log("Impossibile leggere il file .env: " . $envPath);
+        error_log('Impossibile leggere il file .env: ' . $envPath);
         return false;
     }
-    
-    // Elabora ogni riga
     foreach ($lines as $line) {
         $line = trim($line);
-        // Ignora i commenti e le righe vuote
         if ($line === '' || strpos($line, '#') === 0 || strpos($line, '//') === 0) {
             continue;
         }
-        // Dividi la riga in chiave e valore
         if (strpos($line, '=') !== false) {
             list($key, $value) = explode('=', $line, 2);
             $key = trim($key);
             $value = trim($value);
-            // Rimuovi eventuali virgolette
             if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') || (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
                 $value = substr($value, 1, -1);
             }
@@ -50,7 +39,6 @@ function loadEnv($envPath = null) {
             $_SERVER[$key] = $value;
         }
     }
-    
     return true;
 }
 
