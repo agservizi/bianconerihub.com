@@ -83,9 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = $userId;
                     $_SESSION['username'] = $username;
                     $_SESSION['is_admin'] = 0;
-                    
-                    // Aggiorniamo la data dell'ultimo accesso
-                    $conn->query("UPDATE users SET last_login = NOW() WHERE id = {$userId}");
+                      // Aggiorniamo la data dell'ultimo accesso
+                    try {
+                        $updateLogin = $conn->prepare("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
+                        $updateLogin->bind_param("i", $userId);
+                        $updateLogin->execute();
+                    } catch (Exception $e) {
+                        error_log("Errore nell'aggiornamento last_login: " . $e->getMessage());
+                        // Non blocchiamo il processo se questo update fallisce
+                    }
                     
                     // Redirect alla home page
                     redirect(SITE_URL);

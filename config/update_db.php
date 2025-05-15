@@ -12,7 +12,13 @@ $updates = [
     "ALTER TABLE users ADD COLUMN IF NOT EXISTS verification_code VARCHAR(255) AFTER account_status",
     
     // Aggiungi colonna is_verified se non esiste
-    "ALTER TABLE users ADD COLUMN IF NOT EXISTS is_verified TINYINT(1) DEFAULT 0 AFTER verification_code"
+    "ALTER TABLE users ADD COLUMN IF NOT EXISTS is_verified TINYINT(1) DEFAULT 0 AFTER verification_code",
+    
+    // Aggiungi colonna last_login se non esiste
+    "ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login DATETIME AFTER registration_date",
+    
+    // Aggiungi colonna registration_date se non esiste
+    "ALTER TABLE users ADD COLUMN IF NOT EXISTS registration_date DATETIME DEFAULT CURRENT_TIMESTAMP AFTER location"
 ];
 
 header('Content-Type: text/html; charset=utf-8');
