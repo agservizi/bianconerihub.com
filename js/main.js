@@ -372,4 +372,90 @@ $(document).ready(function() {
     if (document.cookie.indexOf('user_id') !== -1) {
         setInterval(checkNotifications, 60000);
     }
+    
+    // Inizializza il form di aggiornamento dell'aspetto
+    initAppearanceUpdate();
 });
+
+// Funzioni per l'aggiornamento dell'aspetto del profilo
+function initAppearanceUpdate() {
+    const form = document.getElementById('appearanceForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvataggio...';
+        
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(SITE_URL + '/actions/update_appearance.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                // Aggiorniamo l'immagine del profilo se è stata caricata una nuova
+                if (result.profile_pic) {
+                    const profilePics = document.querySelectorAll('.profile-pic');
+                    profilePics.forEach(pic => {
+                        pic.src = UPLOADS_URL + '/profile_pics/' + result.profile_pic;
+                    });
+                }
+                
+                showAlert('success', result.message);
+            } else {
+                showAlert('danger', result.message || 'Si è verificato un errore durante l\'aggiornamento del profilo.');
+            }
+        } catch (error) {
+            console.error('Errore:', error);
+            showAlert('danger', 'Si è verificato un errore durante l\'aggiornamento del profilo.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }
+    });
+    
+    // Preview dell'immagine del profilo
+    const profilePicInput = document.getElementById('profile_pic');
+    if (profilePicInput) {
+        profilePicInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.querySelector('.profile-pic-preview');
+                    if (preview) {
+                        preview.src = e.target.result;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+}
+
+// Funzione per mostrare alert
+function showAlert(type, message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    const container = document.querySelector('.main-container');
+    if (container) {
+        container.insertBefore(alertDiv, container.firstChild);
+        
+        // Nascondi automaticamente l'alert dopo 5 secondi
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 5000);
+    }
+}

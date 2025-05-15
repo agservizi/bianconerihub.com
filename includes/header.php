@@ -38,10 +38,12 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
 ?>
 <!DOCTYPE html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($pageTitle); ?></title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo SITE_URL; ?>/assets/images/favicon.png">
     
     <!-- Bootstrap 5.3.0 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,9 +62,9 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
 <body class="bg-light">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="<?php echo SITE_URL; ?>">
-                <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="BiancoNeriHub" height="40">
+        <div class="container">            <a class="navbar-brand d-flex align-items-center" href="<?php echo SITE_URL; ?>">
+                <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="Logo BiancoNeriHub" height="40" class="me-2">
+                <span class="brand-text">BiancoNeriHub</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
