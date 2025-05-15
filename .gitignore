@@ -1,0 +1,20 @@
+# Ignora file di configurazione contenenti credenziali
+config/db_credentials.php
+
+# Ignora file di ambiente
+.env
+
+# Ignora directory vendor
+/vendor/
+
+# Ignora file di sistema
+.DS_Store
+Thumbs.db
+
+# Ignora directory di upload (contenuti generati dagli utenti)
+/uploads/*
+!/uploads/profile_pics/default.jpg
+!/uploads/posts/placeholder.jpg
+
+# Ignora log
+*.log
