@@ -18,16 +18,21 @@ function loadEnv($envPath = null) {
     
     // Verifica se il file .env esiste
     if (!file_exists($envPath)) {
+        error_log("File .env non trovato in: " . $envPath);
         return false;
     }
     
     // Leggi il file .env
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lines === false) {
+        error_log("Impossibile leggere il file .env: " . $envPath);
+        return false;
+    }
     
     // Elabora ogni riga
     foreach ($lines as $line) {
         // Ignora i commenti
-        if (strpos(trim($line), '#') === 0) {
+        if (strpos(trim($line), '#') === 0 || strpos(trim($line), '//') === 0) {
             continue;
         }
         

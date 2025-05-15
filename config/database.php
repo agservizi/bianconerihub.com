@@ -7,6 +7,35 @@
 // Includiamo il gestore delle variabili d'ambiente
 require_once __DIR__ . '/env.php';
 
+// Funzione per debug (da rimuovere dopo il debug)
+function debugEnv() {
+    $debug = [
+        'DB_HOST' => env('DB_HOST', 'non impostato'),
+        'DB_USER' => env('DB_USER', 'non impostato'),
+        'DB_NAME' => env('DB_NAME', 'non impostato'),
+        'ENV_FILE_EXISTS' => file_exists(__DIR__ . '/../.env') ? 'Sì' : 'No',
+        'SERVER_VARS' => isset($_SERVER['DB_HOST']) ? 'Impostato' : 'Non impostato'
+    ];
+    return $debug;
+}
+
+// DEBUG: Mostra le variabili d'ambiente lette
+if (isset($_GET['debug_env'])) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'DB_HOST' => env('DB_HOST', 'non impostato'),
+        'DB_USER' => env('DB_USER', 'non impostato'),
+        'DB_PASS' => env('DB_PASS', 'non impostato'),
+        'DB_NAME' => env('DB_NAME', 'non impostato'),
+        'ENV_FILE_EXISTS' => file_exists(__DIR__ . '/../.env') ? 'Sì' : 'No',
+        'SERVER_VARS' => isset($_SERVER['DB_HOST']) ? 'Impostato' : 'Non impostato'
+    ], JSON_PRETTY_PRINT);
+    exit;
+}
+
+// Debug - Uncomment per testare
+// die(json_encode(debugEnv()));
+
 // Otteniamo le credenziali del database dalle variabili d'ambiente
 $dbHost = env('DB_HOST', 'localhost');
 $dbUser = env('DB_USER', 'root');
@@ -15,12 +44,20 @@ $dbName = env('DB_NAME', 'bianconerihub');
 
 // Inizializziamo la connessione direttamente al database specifico
 try {
+    // Disabilita temporaneamente i report di errore per intercettare meglio gli errori
+    mysqli_report(MYSQLI_REPORT_OFF);
+    
     $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+    
+    // Riattiva i report standard
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     
     // Imposta il set di caratteri per la connessione
     $conn->set_charset("utf8mb4");
 } catch (Exception $e) {
     error_log("Errore di connessione al database: " . $e->getMessage());
+    // Per debug (rimuovere in produzione)
+    // die("Errore: " . $e->getMessage());
     die("Impossibile connettersi al database. Contattare l'amministratore del sito.");
 }
 
