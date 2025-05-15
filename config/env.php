@@ -31,27 +31,24 @@ function loadEnv($envPath = null) {
     
     // Elabora ogni riga
     foreach ($lines as $line) {
-        // Ignora i commenti
-        if (strpos(trim($line), '#') === 0 || strpos(trim($line), '//') === 0) {
+        $line = trim($line);
+        // Ignora i commenti e le righe vuote
+        if ($line === '' || strpos($line, '#') === 0 || strpos($line, '//') === 0) {
             continue;
         }
-        
         // Dividi la riga in chiave e valore
-        list($key, $value) = explode('=', $line, 2);
-        $key = trim($key);
-        $value = trim($value);
-        
-        // Rimuovi eventuali virgolette attorno al valore
-        if (strpos($value, '"') === 0 && strrpos($value, '"') === strlen($value) - 1) {
-            $value = substr($value, 1, -1);
-        } elseif (strpos($value, "'") === 0 && strrpos($value, "'") === strlen($value) - 1) {
-            $value = substr($value, 1, -1);
+        if (strpos($line, '=') !== false) {
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value);
+            // Rimuovi eventuali virgolette
+            if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') || (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
+                $value = substr($value, 1, -1);
+            }
+            putenv("{$key}={$value}");
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
         }
-        
-        // Aggiungi la variabile all'ambiente
-        putenv("$key=$value");
-        $_ENV[$key] = $value;
-        $_SERVER[$key] = $value;
     }
     
     return true;
