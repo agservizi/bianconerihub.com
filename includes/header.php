@@ -61,10 +61,10 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
 </head>
 <body class="bg-light">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">            <a class="navbar-brand d-flex align-items-center" href="<?php echo SITE_URL; ?>">
                 <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="Logo BiancoNeriHub" height="40" class="me-2">
-                <span class="brand-text">BiancoNeriHub</span>
+                <span class="brand-text text-dark">BiancoNeriHub</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
@@ -73,13 +73,13 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/events.php">
+                        <a class="nav-link text-dark" href="<?php echo SITE_URL; ?>/events.php">
                             <i class="fas fa-calendar-alt"></i> Eventi
                         </a>
                     </li>
                     <?php if (isLoggedIn()): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo SITE_URL; ?>/notifications.php">
+                            <a class="nav-link text-dark" href="<?php echo SITE_URL; ?>/notifications.php">
                                 <i class="fas fa-bell"></i> Notifiche
                                 <?php if ($notificationsCount > 0): ?>
                                     <span class="badge bg-danger"><?php echo $notificationsCount; ?></span>
@@ -87,7 +87,7 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo SITE_URL; ?>/messages.php">
+                            <a class="nav-link text-dark" href="<?php echo SITE_URL; ?>/messages.php">
                                 <i class="fas fa-envelope"></i> Messaggi
                                 <?php if ($messagesCount > 0): ?>
                                     <span class="badge bg-danger"><?php echo $messagesCount; ?></span>
@@ -101,7 +101,7 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
                 <form class="d-flex mx-3" action="<?php echo SITE_URL; ?>/search.php" method="GET">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Cerca..." required>
-                        <button class="btn btn-outline-light" type="submit">
+                        <button class="btn btn-outline-dark" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -110,7 +110,7 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
                 <!-- Menu utente -->
                 <?php if (isLoggedIn()): ?>
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" data-bs-toggle="dropdown">
                             <img src="<?php echo UPLOADS_URL . '/profile_pics/' . $currentUser['profile_pic']; ?>" 
                                  alt="<?php echo htmlspecialchars($currentUser['username']); ?>" 
                                  class="rounded-circle" 
@@ -138,14 +138,12 @@ $pageTitle = isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME;
                     </div>
                 <?php else: ?>
                     <div class="nav-item">
-                        <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-outline-light me-2">Accedi</a>
-                        <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-light">Registrati</a>
+                        <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-outline-dark me-2">Accedi</a>
+                        <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-dark">Registrati</a>
                     </div>
                 <?php endif; ?>
             </div>
         </div>
-    </nav>
-
-    <!-- Contenitore principale -->
-    <div class="container main-container py-4">
+    </nav>    <!-- Contenitore principale -->
+    <div class="container main-container py-2">
         <?php displayFlashMessages(); ?>

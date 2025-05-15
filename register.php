@@ -57,15 +57,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 // Hash della password
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                
-                // Codice di verifica
+                  // Codice di verifica
                 $verificationCode = md5(uniqid(mt_rand(), true));
                 
-                // Immagine di profilo predefinita
-                $profilePic = 'default_profile.jpg';
+                // Usiamo il logo come immagine di profilo predefinita
+                $profilePic = 'logo.png';
+                
+                // Copiamo il logo nella cartella delle immagini di profilo se non esiste già
+                $sourceLogo = __DIR__ . '/assets/images/logo.png';
+                $destLogo = __DIR__ . '/uploads/profile_pics/logo.png';
+                if (!file_exists($destLogo) && file_exists($sourceLogo)) {
+                    copy($sourceLogo, $destLogo);
+                }
                 
                 // Query di inserimento
-                $query = "INSERT INTO users (username, email, password, full_name, profile_pic, verification_code) 
+                $query = "INSERT INTO users (username, email, password, full_name, profile_pic, verification_code)
                          VALUES ('{$username}', '{$email}', '{$hashedPassword}', '{$fullName}', '{$profilePic}', '{$verificationCode}')";
                 
                 if ($conn->query($query)) {
