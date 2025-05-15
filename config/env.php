@@ -11,10 +11,10 @@
  * @return bool True se il file è stato caricato, false altrimenti
  */
 function loadEnv($envPath = null) {
-    // Cerca SEMPRE nella root del progetto
-    $envPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
-    if (!file_exists($envPath)) {
-        error_log('File .env non trovato in: ' . $envPath);
+    // Cerca nella root del progetto
+    $envPath = realpath(__DIR__ . '/../.env');
+    if (!$envPath || !file_exists($envPath)) {
+        error_log('File .env non trovato in: ' . __DIR__ . '/../.env');
         return false;
     }
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
