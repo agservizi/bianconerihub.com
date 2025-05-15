@@ -11,18 +11,36 @@
  * @return bool True se il file è stato caricato, false altrimenti
  */
 function loadEnv($envPath = null) {
-    // Se non è specificato un percorso, cerca nella root del progetto
-    if ($envPath === null) {
-        $envPath = __DIR__ . '/../.env';
+    // Array di possibili percorsi dove cercare il file .env
+    $possiblePaths = [
+        __DIR__ . '/../.env',                    // Percorso relativo standard
+        $_SERVER['DOCUMENT_ROOT'] . '/../.env',  // Un livello sopra la document root
+        $_SERVER['DOCUMENT_ROOT'] . '/.env',     // Nella document root
+        '/home/u427445037/domains/bianconerihub.com/.env'  // Percorso assoluto sul server
+    ];
+    
+    // Se è stato specificato un percorso, lo aggiungiamo all'inizio dell'array
+    if ($envPath !== null) {
+        array_unshift($possiblePaths, $envPath);
     }
     
-    $realPath = realpath($envPath);
+    // Cerca il file .env in tutti i possibili percorsi
+    $envPath = null;
+    foreach ($possiblePaths as $path) {
+        if (file_exists($path) && is_readable($path)) {
+            $envPath = $path;
+            break;
+        }
+        error_log("Tentativo fallito per .env in: " . $path);
+    }
     
-    // Debug - Log del percorso e dei permessi
-    error_log("Tentativo di caricamento .env da: " . $envPath);
-    error_log("Percorso reale: " . ($realPath ? $realPath : "non trovato"));
-    error_log("Il file esiste? " . (file_exists($envPath) ? "Sì" : "No"));
-    error_log("Permessi file: " . (file_exists($envPath) ? decoct(fileperms($envPath) & 0777) : "N/A"));
+    // Se non troviamo il file da nessuna parte, logghiamo e usciamo
+    if ($envPath === null) {
+        error_log("File .env non trovato in nessuno dei percorsi controllati");
+        return false;
+    }
+    
+    error_log("File .env trovato in: " . $envPath);
     error_log("File leggibile? " . (is_readable($envPath) ? "Sì" : "No"));
     
     if (!file_exists($envPath)) {

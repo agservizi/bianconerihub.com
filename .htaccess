@@ -1,0 +1,5 @@
+SetEnv DB_HOST 127.0.0.1
+SetEnv DB_USER u427445037_bianconerihub
+SetEnv DB_PASS Giogiu2123@
+SetEnv DB_NAME u427445037_bianconerihub
+SetEnv APP_ENV production

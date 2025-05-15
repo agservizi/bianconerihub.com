@@ -54,15 +54,23 @@ error_log("Cercando file .env in: " . $envFile);
 error_log("File .env esiste: " . (file_exists($envFile) ? 'Sì' : 'No'));
 
 // Otteniamo le credenziali del database dalle variabili d'ambiente
-$dbHost = env('DB_HOST', 'localhost');
-$dbUser = env('DB_USER', 'root');
-$dbPass = env('DB_PASS', '');
-$dbName = env('DB_NAME', 'bianconerihub');
+$dbHost = env('DB_HOST', null);
+$dbUser = env('DB_USER', null);
+$dbPass = env('DB_PASS', null);
+$dbName = env('DB_NAME', null);
 
-// Debug - log delle variabili ottenute (rimuovere in produzione)
+// Verifica che tutte le variabili necessarie siano impostate
+if ($dbHost === null || $dbUser === null || $dbPass === null || $dbName === null) {
+    error_log("ERRORE: Credenziali database mancanti!");
+    error_log("DB_HOST: " . ($dbHost ?? 'NULL'));
+    error_log("DB_USER: " . ($dbUser ?? 'NULL'));
+    error_log("DB_NAME: " . ($dbName ?? 'NULL'));
+    die("Errore di configurazione del database. Contattare l'amministratore del sito.");
+}
+
+// Debug - log delle variabili ottenute
+error_log("Credenziali database caricate con successo");
 error_log("DB_HOST: " . $dbHost);
-error_log("DB_USER: " . $dbUser);
-error_log("DB_NAME: " . $dbName);
 
 // Inizializziamo la connessione direttamente al database specifico
 try {
