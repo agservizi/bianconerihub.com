@@ -14,7 +14,7 @@ $usersTable = "CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
-    profile_pic VARCHAR(255) DEFAULT 'default_profile.jpg',
+    profile_pic VARCHAR(255) DEFAULT 'logo.png',
     bio TEXT,
     location VARCHAR(100),
     registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,

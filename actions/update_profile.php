@@ -75,7 +75,7 @@ if (!empty($_FILES['profile_pic']['name'])) {
     }
     
     // Eliminiamo la vecchia immagine se non è quella di default
-    if ($user['profile_pic'] != 'default_profile.jpg') {
+    if ($user['profile_pic'] != 'logo.png') {
         $oldPath = $uploadDir . $user['profile_pic'];
         if (file_exists($oldPath)) {
             unlink($oldPath);

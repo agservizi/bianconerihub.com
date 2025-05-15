@@ -66,7 +66,7 @@ try {
         $oldPicResult = $conn->query($oldPicQuery);
         if ($oldPicResult && $oldPicResult->num_rows > 0) {
             $oldPic = $oldPicResult->fetch_assoc()['profile_pic'];
-            if ($oldPic !== 'default_profile.jpg') {
+            if ($oldPic !== 'logo.png') {
                 $oldPicPath = __DIR__ . '/../uploads/profile_pics/' . $oldPic;
                 if (file_exists($oldPicPath)) {
                     unlink($oldPicPath);
