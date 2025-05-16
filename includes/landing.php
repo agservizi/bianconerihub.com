@@ -28,6 +28,91 @@ html, body {
     background: var(--juventus-black);
 }
 
+/* Navbar moderna e trasparente */
+.navbar {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: clamp(1rem, 2vh, 1.5rem) clamp(2rem, 5vw, 4rem);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled {
+    background: var(--juventus-black);
+    padding: 0.8rem clamp(2rem, 5vw, 4rem);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-brand img {
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--juventus-white);
+    font-weight: 500;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    color: var(--juventus-gold);
+}
+
+.btn-navbar {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-navbar.login {
+    color: var(--juventus-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-navbar.login:hover {
+    border-color: var(--juventus-gold);
+    color: var(--juventus-gold);
+}
+
+.btn-navbar.register {
+    background: var(--juventus-gold);
+    color: var(--juventus-black);
+    border: 1px solid var(--juventus-gold);
+}
+
+.btn-navbar.register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 164, 126, 0.3);
+}
+
 /* Rimozione margini dal container principale */
 .main-container {
     margin: 0;
@@ -122,27 +207,6 @@ html, body {
     gap: 1rem;
     margin: 0;
     padding: 0;
-}
-
-/* Fix per navbar */
-.navbar {
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 1rem;
-    margin: 0;
-    background: transparent;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
 }
 
 /* Social Preview Section */
@@ -373,14 +437,34 @@ html, body {
 </style>
 
 <nav class="navbar">
-    <a class="navbar-brand" href="index.php">
-        <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="BiancoNeriHub" height="40">
-    </a>
-    <div class="nav-buttons">
-        <a href="login.php" class="btn btn-link text-white">Accedi</a>
-        <a href="register.php" class="btn btn-outline-light">Registrati</a>
+    <div class="navbar-inner">
+        <a class="navbar-brand" href="index.php">
+            <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="BiancoNeriHub">
+            <span class="d-none d-sm-inline text-white">BiancoNeriHub</span>
+        </a>
+        <div class="nav-buttons">
+            <a href="login.php" class="btn-navbar login">
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="d-none d-sm-inline">Accedi</span>
+            </a>
+            <a href="register.php" class="btn-navbar register">
+                <i class="fas fa-user-plus"></i>
+                <span class="d-none d-sm-inline">Registrati</span>
+            </a>
+        </div>
     </div>
 </nav>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
 <!-- Hero Section -->
 <section class="hero-section">
