@@ -6,6 +6,9 @@
 ?>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <!-- Stili CSS precedentemente aggiunti -->
 <style>
 /* Stili per la landing page interattiva */
@@ -593,175 +596,410 @@
     animation: float 20s infinite linear;
 }
 
-/* Responsive classes */
-@media (max-width: 992px) {
-    .hero-title {
-        font-size: 3.5rem;
+/* Nuovi stili per le sezioni aggiuntive */
+.features-section {
+    padding: 6rem 0;
+    background: var(--juventus-white);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    color: var(--juventus-black);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--juventus-gold);
+    border-radius: 2px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.feature-card {
+    background: var(--juventus-white);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--juventus-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon i {
+    font-size: 2rem;
+    color: var(--juventus-white);
+}
+
+.feature-card h3 {
+    color: var(--juventus-black);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--juventus-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Stats Section */
+.stats-section {
+    background: var(--juventus-gradient);
+    padding: 4rem 0;
+    color: var(--juventus-white);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 2rem;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Community Section */
+.community-section {
+    padding: 6rem 0;
+    background: var(--juventus-light-gray);
+    overflow: hidden;
+}
+
+.community-section .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.community-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--juventus-black);
+}
+
+.community-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--juventus-gray);
+    margin-bottom: 2rem;
+}
+
+.community-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-item i {
+    color: var(--juventus-gold);
+    font-size: 1.2rem;
+}
+
+.community-image {
+    position: relative;
+}
+
+.community-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-join {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--juventus-gradient);
+    color: var(--juventus-white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-join:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--juventus-white);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: bounce 2s infinite;
+    z-index: 2;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--juventus-white);
+    border-radius: 15px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: var(--juventus-white);
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+}
+
+.scroll-indicator span {
+    color: var(--juventus-white);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@keyframes scroll {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 15px); opacity: 0; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-10px) translateX(-50%); }
+    60% { transform: translateY(-5px) translateX(-50%); }
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .community-section .container {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
     
-    .trophy-slider {
-        height: 100px;
+    .community-features {
+        justify-content: center;
     }
     
-    .trophy-item img {
-        height: 60px;
+    .feature-item {
+        justify-content: center;
+    }
+    
+    .community-image {
+        margin-top: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 3rem;
+    .section-title {
+        font-size: 2rem;
     }
     
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .stats-section {
-        padding: 40px 0;
+    .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     .stat-number {
         font-size: 2.5rem;
     }
     
-    .trophy-slider {
-        display: none;
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    .community-content h2 {
+        font-size: 2rem;
     }
 }
 </style>
 
+<!-- Hero Section -->
 <div class="hero-section">
     <div class="particles">
         <?php for($i = 0; $i < 50; $i++): ?>
-            <div class="particle" style="
-                left: <?php echo rand(0, 100); ?>%;
-                top: <?php echo rand(0, 100); ?>%;
-                width: <?php echo rand(2, 6); ?>px;
-                height: <?php echo rand(2, 6); ?>px;
-                animation-delay: <?php echo rand(0, 20000)/1000; ?>s;
-            "></div>
+            <div class="particle"></div>
         <?php endfor; ?>
     </div>
     
     <div class="hero-content">
         <h1 class="hero-title">BiancoNeriHub</h1>
-        <p class="hero-subtitle">Unisciti alla più grande community di tifosi juventini. Condividi la tua passione, resta aggiornato e connettiti con altri bianconeri in tutto il mondo.</p>
-        
+        <p class="hero-subtitle">La casa digitale dei tifosi bianconeri. Unisciti alla community più appassionata del calcio italiano.</p>
         <div class="cta-container">
-            <a href="register.php" class="cta-button cta-primary">Unisciti Ora</a>
-            <a href="about.php" class="cta-button cta-secondary">Scopri di più</a>
+            <a href="register.php" class="cta-button cta-primary">
+                <i class="fas fa-user-plus"></i>
+                Unisciti Ora
+            </a>
+            <a href="#features" class="cta-button cta-secondary">
+                <i class="fas fa-info-circle"></i>
+                Scopri di più
+            </a>
         </div>
     </div>
     
-    <!-- Trophy slider esistente -->
-    <div class="trophy-slider">
-        <div class="slider-container">
-            <!-- Trofei duplicati per infinite loop -->
-            <?php
-            $trophies = [
-                ['name' => 'Serie A', 'count' => '36', 'img' => 'scudetto.png'],
-                ['name' => 'Coppa Italia', 'count' => '14', 'img' => 'coppa-italia.png'],
-                ['name' => 'Supercoppa', 'count' => '9', 'img' => 'supercoppa.png'],
-                ['name' => 'Champions League', 'count' => '2', 'img' => 'champions.png'],
-                ['name' => 'Coppa UEFA', 'count' => '3', 'img' => 'europa-league.png'],
-                ['name' => 'Intercontinentale', 'count' => '2', 'img' => 'intercontinentale.png'],
-                ['name' => 'Supercoppa UEFA', 'count' => '2', 'img' => 'supercoppa-uefa.png'],
-                ['name' => 'Coppa delle Coppe', 'count' => '1', 'img' => 'coppadellecoppe.png']
-            ];
-            
-            // Duplicare per effetto infinito
-            $allTrophies = array_merge($trophies, $trophies);
-            
-            foreach ($allTrophies as $trophy) {
-                echo '<div class="trophy-item">
-                        <img src="' . ASSETS_URL . '/images/trophies/' . $trophy['img'] . '" alt="' . $trophy['name'] . '">
-                        <span>' . $trophy['count'] . ' x ' . $trophy['name'] . '</span>
-                      </div>';
-            }
-            ?>
-        </div>
+    <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Scorri per scoprire</span>
     </div>
 </div>
 
-<!-- Sezione caratteristiche -->
-<div class="container py-5">
-    <div class="row text-center mb-5 animate-on-scroll">
-        <div class="col-12">
-            <h2 class="display-4 fw-bold mb-3">La tua passione, la nostra community</h2>
-            <p class="lead text-muted">Scopri tutto ciò che BiancoNeriHub ha da offrirti</p>
-            <div class="d-flex justify-content-center mt-4">
-                <div style="width: 100px; height: 4px; background: var(--juventus-gold);"></div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4 mb-4 animate-on-scroll">
-            <div class="feature-card h-100">
+<!-- Features Section -->
+<section id="features" class="features-section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Cosa offre BiancoNeriHub</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h4 class="mt-4 mb-3">Community Esclusiva</h4>
-                <p class="text-muted">Connettiti con migliaia di tifosi bianconeri che condividono la tua stessa passione. Discuti, condividi e celebra ogni momento insieme.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Unisciti ora</a>
+                <h3>Community Globale</h3>
+                <p>Connettiti con tifosi da tutto il mondo e condividi la tua passione per la Juventus</p>
             </div>
-        </div>
-        <div class="col-md-4 mb-4 animate-on-scroll" data-delay="200">
-            <div class="feature-card h-100">
-                <div class="feature-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h4 class="mt-4 mb-3">Dibattiti Appassionati</h4>
-                <p class="text-muted">Partecipa a discussioni su tattica, calciomercato, partite e tutto ciò che riguarda la Juventus. La tua opinione conta.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Inizia a discutere</a>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 animate-on-scroll" data-delay="400">
-            <div class="feature-card h-100">
-                <div class="feature-icon">
-                    <i class="fas fa-newspaper"></i>
-                </div>
-                <h4 class="mt-4 mb-3">News in Tempo Reale</h4>
-                <p class="text-muted">Rimani aggiornato con le ultime notizie sulla Juventus. Articoli, interviste e contenuti esclusivi direttamente dalla community.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Scopri le news</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row mt-4">
-        <div class="col-md-4 mb-4 animate-on-scroll">
-            <div class="feature-card h-100">
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature-icon">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h4 class="mt-4 mb-3">Eventi dal Vivo</h4>
-                <p class="text-muted">Partecipa a raduni per vedere le partite insieme, incontri con altri tifosi ed eventi speciali organizzati dalla nostra community.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Scopri gli eventi</a>
+                <h3>Eventi Dal Vivo</h3>
+                <p>Organizza e partecipa a eventi per guardare le partite insieme ad altri tifosi</p>
             </div>
-        </div>
-        <div class="col-md-4 mb-4 animate-on-scroll" data-delay="200">
-            <div class="feature-card h-100">
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="feature-icon">
-                    <i class="fas fa-images"></i>
+                    <i class="fas fa-comment-alt"></i>
                 </div>
-                <h4 class="mt-4 mb-3">Gallerie Multimediali</h4>
-                <p class="text-muted">Condividi foto e video delle tue esperienze allo stadio, dei tuoi incontri con i giocatori e di ogni momento importante per te.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Esplora la galleria</a>
+                <h3>Discussioni</h3>
+                <p>Partecipa a discussioni animate su tattiche, trasferimenti e molto altro</p>
             </div>
-        </div>
-        <div class="col-md-4 mb-4 animate-on-scroll" data-delay="400">
-            <div class="feature-card h-100">
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
                 <div class="feature-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
-                <h4 class="mt-4 mb-3">Storia Bianconera</h4>
-                <p class="text-muted">Rivivi i momenti più gloriosi della Juventus attraverso timeline interattive, archivi storici e ricordi condivisi dai tifosi.</p>
-                <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-sm btn-outline-dark mt-3">Esplora la storia</a>
+                <h3>Storia e Tradizione</h3>
+                <p>Esplora la ricca storia del club attraverso contenuti esclusivi e memorie condivise</p>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number" data-count="50000">0</div>
+                <div class="stat-label">Membri della community</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" data-count="1000">0</div>
+                <div class="stat-label">Eventi organizzati</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" data-count="100000">0</div>
+                <div class="stat-label">Post condivisi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Community Section -->
+<section class="community-section">
+    <div class="container">
+        <div class="community-content" data-aos="fade-right">
+            <h2>Entra nella Community</h2>
+            <p>Unisciti a migliaia di tifosi che condividono la tua stessa passione. BiancoNeriHub è più di un social network: è la tua casa bianconera digitale.</p>
+            <div class="community-features">
+                <div class="feature-item">
+                    <i class="fas fa-check"></i>
+                    <span>Profilo personalizzato</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check"></i>
+                    <span>Messaggistica diretta</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check"></i>
+                    <span>Notifiche in tempo reale</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check"></i>
+                    <span>Contenuti esclusivi</span>
+                </div>
+            </div>
+            <a href="register.php" class="btn-join">Crea il tuo profilo</a>
+        </div>
+        <div class="community-image" data-aos="fade-left">
+            <img src="<?php echo ASSETS_URL; ?>/images/community.jpg" alt="Community BiancoNeriHub">
+        </div>
+    </div>
+</section>
 
 <!-- Sezione stadio interattivo -->
 <div class="stadium-section mb-5 animate-on-scroll">
