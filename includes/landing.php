@@ -12,28 +12,56 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <style>
-/* Reset stili per full screen */
+/* Reset CSS completo */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    width: 100%;
     background: var(--juventus-black);
     color: var(--juventus-white);
+    position: relative;
 }
 
-/* Hero Section */
+.main-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Reset sezioni principali */
+section {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* Hero Section Fixes */
 .hero-section {
     position: relative;
-    min-height: 100vh;
     width: 100vw;
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
-                url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
-    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .hero-stripe {
@@ -56,7 +84,9 @@ body, html {
     z-index: 2;
     text-align: center;
     max-width: 1200px;
-    padding: 0 2rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .hero-title {
