@@ -12,20 +12,28 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <style>
-/* Reset e variabili già definite in style.css */
+/* Reset stili per full screen */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: var(--juventus-black);
+    color: var(--juventus-white);
+}
 
 /* Hero Section */
 .hero-section {
     position: relative;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    width: 100vw;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
                 url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--juventus-white);
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-stripe {
@@ -36,10 +44,10 @@
     height: 100%;
     background: repeating-linear-gradient(
         45deg,
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.1) 10px,
-        rgba(255, 255, 255, 0.1) 10px,
-        rgba(255, 255, 255, 0.1) 20px
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 10px
     );
 }
 
@@ -48,17 +56,19 @@
     z-index: 2;
     text-align: center;
     max-width: 1200px;
-    padding: 2rem;
+    padding: 0 2rem;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
     line-height: 1;
-    position: relative;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(197, 164, 126, 0.3);
 }
 
 .hero-subtitle {
@@ -68,51 +78,49 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--juventus-white);
     opacity: 0.9;
 }
 
 /* Social Feed Preview */
 .social-preview {
-    background: var(--juventus-white);
+    background: var(--juventus-black);
     padding: 6rem 0;
     position: relative;
-    overflow: hidden;
+    width: 100vw;
 }
 
 .preview-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
-    color: var(--juventus-black);
+    color: var(--juventus-white);
     margin-bottom: 4rem;
+    text-transform: uppercase;
 }
 
 .feed-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
 .feed-post {
-    background: var(--juventus-white);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 .feed-post:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.post-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.2);
+    border-color: var(--juventus-gold);
 }
 
 .post-content {
@@ -125,29 +133,9 @@
     margin-bottom: 1rem;
 }
 
-.post-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 1rem;
-}
-
-.post-user {
-    font-weight: 600;
-    color: var(--juventus-black);
-}
-
 .post-text {
-    color: var(--juventus-gray);
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-.post-stats {
-    display: flex;
-    gap: 1rem;
-    color: var(--juventus-gray);
-    font-size: 0.9rem;
+    color: var(--juventus-white);
+    opacity: 0.9;
 }
 
 /* Features Grid */
@@ -155,20 +143,26 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 6rem 2rem;
-    background: var(--juventus-light-gray);
+    background: var(--juventus-black);
 }
 
 .feature-card {
-    background: var(--juventus-white);
+    background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
     border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: left;
-    box-shadow: var(--shadow-md);
-    display: flex;
-    flex-direction: column;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: var(--juventus-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.2);
 }
 
 .feature-icon {
@@ -181,20 +175,22 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--juventus-black);
+    color: var(--juventus-white);
 }
 
 .feature-text {
-    color: var(--juventus-gray);
+    color: var(--juventus-white);
+    opacity: 0.8;
     line-height: 1.6;
 }
 
-/* Community Stats */
+/* Stats Section */
 .stats-section {
-    background: var(--juventus-gradient);
-    padding: 4rem 0;
-    color: var(--juventus-white);
-    text-align: center;
+    background: linear-gradient(45deg, rgba(0,0,0,0.95), rgba(0,0,0,0.98)),
+                url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 6rem 0;
+    width: 100vw;
 }
 
 .stats-container {
@@ -202,35 +198,25 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 4rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.stat-item {
-    flex: 1;
-    min-width: 200px;
-}
-
 .stat-number {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
     background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.stat-label {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    text-shadow: 0 0 30px rgba(197, 164, 126, 0.3);
 }
 
 /* CTA Section */
 .cta-section {
+    background: var(--juventus-black);
     padding: 6rem 0;
-    background: var(--juventus-white);
-    text-align: center;
+    width: 100vw;
 }
 
 .cta-content {
@@ -242,7 +228,7 @@
 .cta-title {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--juventus-black);
+    color: var(--juventus-white);
     margin-bottom: 1.5rem;
 }
 
@@ -261,64 +247,69 @@
 }
 
 .btn-primary-large {
-    padding: 1rem 3rem;
+    padding: 1.2rem 3.5rem;
     font-size: 1.2rem;
     font-weight: 600;
-    background: var(--juventus-gradient);
-    color: var(--juventus-white);
+    background: linear-gradient(135deg, var(--juventus-gold) 0%, darken(var(--juventus-gold), 20%) 100%);
+    color: var(--juventus-black);
     border: none;
     border-radius: 50px;
     transition: all 0.3s ease;
-    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-primary-large:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    color: var(--juventus-white);
+    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
+    color: var(--juventus-black);
 }
 
 .btn-secondary-large {
-    padding: 1rem 3rem;
+    padding: 1.2rem 3.5rem;
     font-size: 1.2rem;
     font-weight: 600;
     background: transparent;
-    color: var(--juventus-black);
-    border: 2px solid var(--juventus-black);
+    color: var(--juventus-gold);
+    border: 2px solid var(--juventus-gold);
     border-radius: 50px;
     transition: all 0.3s ease;
-    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-secondary-large:hover {
-    background: var(--juventus-black);
-    color: var(--juventus-white);
+    background: var(--juventus-gold);
+    color: var(--juventus-black);
+    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
+}
+
+/* Effetti di scroll */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
     .hero-content {
-        padding: 1rem;
+        padding: 0 1rem;
     }
     
-    .feed-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-container {
-        gap: 2rem;
-    }
-    
-    .stat-item {
-        flex: 0 0 100%;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
+    .preview-title,
+    .cta-title {
+        font-size: 2rem;
     }
     
     .btn-primary-large,
     .btn-secondary-large {
         width: 100%;
+        margin: 0.5rem 0;
     }
 }
 </style>
@@ -326,14 +317,21 @@
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="hero-stripe"></div>
-    <div class="hero-content">
+    <div class="hero-content scroll-reveal">
         <h1 class="hero-title">BiancoNeriHub</h1>
         <p class="hero-subtitle">Il social network dedicato ai veri tifosi della Juventus. 
         Unisciti alla community più appassionata d'Italia e condividi la tua fede bianconera.</p>
         <div class="cta-buttons">
-            <a href="register.php" class="btn-primary-large">Unisciti alla Community</a>
-            <a href="#features" class="btn-secondary-large">Scopri di Più</a>
+            <a href="register.php" class="btn-primary-large">
+                <i class="fas fa-user-plus"></i> Unisciti Ora
+            </a>
+            <a href="#features" class="btn-secondary-large">
+                <i class="fas fa-chevron-down"></i> Scopri di Più
+            </a>
         </div>
+    </div>
+    <div class="scroll-indicator">
+        <span class="mouse"></span>
     </div>
 </section>
 
@@ -467,5 +465,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const moveY = (e.clientY * -0.01);
         document.querySelector('.hero-section').style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Animazione elementi allo scroll
+    const scrollElements = document.querySelectorAll('.scroll-reveal');
+    
+    const elementInView = (el, offset = 0) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (1 - offset));
+    };
+    
+    const displayScrollElement = (element) => {
+        element.classList.add('visible');
+    };
+    
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 0.25)) {
+                displayScrollElement(el);
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+    });
+    
+    // Trigger iniziale
+    handleScrollAnimation();
 });
 </script>
