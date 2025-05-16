@@ -12,69 +12,127 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <style>
-/* Reset totale */
+/* Reset CSS totale */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body, html {
+html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     width: 100%;
+    height: 100%;
+    overflow-x: hidden;
     background: var(--juventus-black);
-    color: var(--juventus-white);
+}
+
+/* Rimozione margini dal container principale */
+.main-container {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                 url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
     background-size: cover;
+    text-align: center;
 }
 
 .hero-content {
     width: 100%;
-    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 0;
-    text-align: center;
+    margin: 0;
 }
 
 .hero-title {
-    font-size: clamp(4rem, 10vw, 8rem);
+    font-size: clamp(4rem, 12vw, 8rem);
     font-weight: 900;
-    text-transform: uppercase;
     line-height: 1;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    color: var(--juventus-white);
+    letter-spacing: -2px;
+    font-family: var(--font-heading);
 }
 
 .hero-subtitle {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     margin: 2vh 0;
-    padding: 0;
+    padding: 0 1rem;
     color: var(--juventus-white);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-buttons {
-    margin: 2vh 0 0 0;
+    margin: 4vh 0 0 0;
     padding: 0;
     display: flex;
     justify-content: center;
     gap: 1rem;
+}
+
+.btn-primary-large,
+.btn-secondary-large {
+    padding: 1rem 2.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary-large {
+    background: var(--juventus-gold);
+    color: var(--juventus-black);
+}
+
+.btn-secondary-large {
+    background: transparent;
+    border: 2px solid var(--juventus-gold);
+    color: var(--juventus-gold);
+}
+
+/* Rimozione ogni spazio vuoto tra le sezioni */
+section {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix per il navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: transparent;
+    z-index: 1000;
 }
 
 /* Social Preview Section */
@@ -164,63 +222,51 @@ body, html {
     text-align: center;
 }
 
-/* Buttons */
-.btn-primary-large,
-.btn-secondary-large {
-    display: inline-block;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
-
-.btn-primary-large {
-    background: var(--juventus-gold);
-    color: var(--juventus-black);
-}
-
-.btn-secondary-large {
-    background: transparent;
-    border: 2px solid var(--juventus-gold);
-    color: var(--juventus-gold);
-}
-
+/* Media Queries */
 @media (max-width: 768px) {
+    .hero-content {
+        width: 100%;
+    }
+
     .cta-buttons {
         flex-direction: column;
-        gap: 1vh;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1rem;
     }
 
     .btn-primary-large,
     .btn-secondary-large {
-        width: 90%;
-        margin: 0 auto;
+        width: 100%;
+        justify-content: center;
     }
 }
 </style>
 
+<nav class="navbar">
+    <a class="navbar-brand" href="index.php">
+        <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="BiancoNeriHub" height="40">
+    </a>
+    <div class="nav-buttons">
+        <a href="login.php" class="btn btn-link text-white">Accedi</a>
+        <a href="register.php" class="btn btn-outline-light">Registrati</a>
+    </div>
+</nav>
+
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="hero-stripe"></div>
-    <div class="hero-content scroll-reveal">
-        <h1 class="hero-title">BiancoNeriHub</h1>
+    <div class="hero-content">
+        <h1 class="hero-title">BIANCONERIHUB</h1>
         <p class="hero-subtitle">Il social network dedicato ai veri tifosi della Juventus. 
         Unisciti alla community più appassionata d'Italia e condividi la tua fede bianconera.</p>
         <div class="cta-buttons">
             <a href="register.php" class="btn-primary-large">
-                <i class="fas fa-user-plus"></i> Unisciti Ora
+                <i class="fas fa-user-plus"></i> UNISCITI ORA
             </a>
             <a href="#features" class="btn-secondary-large">
-                <i class="fas fa-chevron-down"></i> Scopri di Più
+                <i class="fas fa-chevron-down"></i> SCOPRI DI PIÙ
             </a>
         </div>
-    </div>
-    <div class="scroll-indicator">
-        <span class="mouse"></span>
     </div>
 </section>
 
