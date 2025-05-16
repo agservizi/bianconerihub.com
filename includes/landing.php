@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <style>
-/* Reset CSS completo */
+/* Reset totale */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -26,33 +26,13 @@ body, html {
     width: 100%;
     background: var(--juventus-black);
     color: var(--juventus-white);
-    position: relative;
 }
 
-.main-container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow: hidden;
-}
-
-/* Reset sezioni principali */
-section {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
-
-/* Hero Section Fixes */
+/* Hero Section */
 .hero-section {
     position: relative;
-    width: 100vw;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
@@ -61,285 +41,164 @@ section {
     background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
                 url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
     background-size: cover;
-    overflow: hidden;
-}
-
-.hero-stripe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 10px
-    );
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .hero-title {
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
     line-height: 1;
+    margin: 0;
+    padding: 0;
     background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(197, 164, 126, 0.3);
 }
 
 .hero-subtitle {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 400;
-    margin-bottom: 3rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 2vh 0;
+    padding: 0;
     color: var(--juventus-white);
-    opacity: 0.9;
 }
 
-/* Social Feed Preview */
+.cta-buttons {
+    margin: 2vh 0 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Social Preview Section */
 .social-preview {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     background: var(--juventus-black);
-    padding: 6rem 0;
-    position: relative;
-    width: 100vw;
 }
 
 .preview-title {
+    width: 100%;
     text-align: center;
-    font-size: 3rem;
-    font-weight: 800;
+    margin: 0;
+    padding: 2vh 0;
     color: var(--juventus-white);
-    margin-bottom: 4rem;
-    text-transform: uppercase;
 }
 
 .feed-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    gap: 0;
 }
 
 .feed-post {
+    margin: 0;
+    padding: 0;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
 }
 
-.feed-post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.2);
-    border-color: var(--juventus-gold);
-}
-
-.post-content {
-    padding: 1.5rem;
-}
-
-.post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.post-text {
-    color: var(--juventus-white);
-    opacity: 0.9;
-}
-
-/* Features Grid */
+/* Features Section */
 .features-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 6rem 2rem;
+    gap: 0;
     background: var(--juventus-black);
 }
 
 .feature-card {
+    margin: 0;
+    padding: 2vh;
     background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: left;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    border-color: var(--juventus-gold);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.2);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--juventus-gold);
-    margin-bottom: 1.5rem;
-}
-
-.feature-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--juventus-white);
-}
-
-.feature-text {
-    color: var(--juventus-white);
-    opacity: 0.8;
-    line-height: 1.6;
 }
 
 /* Stats Section */
 .stats-section {
-    background: linear-gradient(45deg, rgba(0,0,0,0.95), rgba(0,0,0,0.98)),
-                url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
-    background-size: cover;
-    padding: 6rem 0;
-    width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.95), rgba(0,0,0,0.98));
 }
 
 .stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 2vh 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.stat-number {
-    font-size: 4rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(197, 164, 126, 0.3);
+.stat-item {
+    text-align: center;
+    margin: 0;
+    padding: 2vh 0;
 }
 
 /* CTA Section */
 .cta-section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     background: var(--juventus-black);
-    padding: 6rem 0;
-    width: 100vw;
 }
 
 .cta-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 2vh 0;
+    text-align: center;
 }
 
-.cta-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--juventus-white);
-    margin-bottom: 1.5rem;
-}
-
-.cta-text {
+/* Buttons */
+.btn-primary-large,
+.btn-secondary-large {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0;
     font-size: 1.2rem;
-    color: var(--juventus-gray);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
 .btn-primary-large {
-    padding: 1.2rem 3.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, var(--juventus-gold) 0%, darken(var(--juventus-gold), 20%) 100%);
-    color: var(--juventus-black);
-    border: none;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn-primary-large:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
+    background: var(--juventus-gold);
     color: var(--juventus-black);
 }
 
 .btn-secondary-large {
-    padding: 1.2rem 3.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
     background: transparent;
-    color: var(--juventus-gold);
     border: 2px solid var(--juventus-gold);
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn-secondary-large:hover {
-    background: var(--juventus-gold);
-    color: var(--juventus-black);
-    box-shadow: 0 10px 30px rgba(197, 164, 126, 0.3);
-}
-
-/* Effetti di scroll */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+    color: var(--juventus-gold);
 }
 
 @media (max-width: 768px) {
-    .hero-content {
-        padding: 0 1rem;
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1vh;
     }
-    
-    .preview-title,
-    .cta-title {
-        font-size: 2rem;
-    }
-    
+
     .btn-primary-large,
     .btn-secondary-large {
-        width: 100%;
-        margin: 0.5rem 0;
+        width: 90%;
+        margin: 0 auto;
     }
 }
 </style>
