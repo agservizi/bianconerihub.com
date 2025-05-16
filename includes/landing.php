@@ -437,34 +437,14 @@ html, body {
 </style>
 
 <nav class="navbar">
-    <div class="navbar-inner">
-        <a class="navbar-brand" href="index.php">
-            <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="BiancoNeriHub">
-            <span class="d-none d-sm-inline text-white">BiancoNeriHub</span>
-        </a>
-        <div class="nav-buttons">
-            <a href="login.php" class="btn-navbar login">
-                <i class="fas fa-sign-in-alt"></i>
-                <span class="d-none d-sm-inline">Accedi</span>
-            </a>
-            <a href="register.php" class="btn-navbar register">
-                <i class="fas fa-user-plus"></i>
-                <span class="d-none d-sm-inline">Registrati</span>
-            </a>
-        </div>
+    <a class="navbar-brand" href="index.php">
+        <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="BiancoNeriHub" height="40">
+    </a>
+    <div class="nav-buttons">
+        <a href="login.php" class="btn btn-link text-white">Accedi</a>
+        <a href="register.php" class="btn btn-outline-light">Registrati</a>
     </div>
 </nav>
-
-<script>
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
 
 <!-- Hero Section -->
 <section class="hero-section">
