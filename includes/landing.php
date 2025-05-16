@@ -232,21 +232,142 @@ html, body {
     text-align: center;
 }
 
-/* Media Queries */
+/* Stili pulsanti migliorati */
+.btn-primary-large {
+    background: linear-gradient(135deg, var(--juventus-gold) 0%, darken(var(--juventus-gold), 15%) 100%);
+    color: var(--juventus-black);
+    border: none;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 3rem);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: clamp(200px, 30vw, 300px);
+}
+
+.btn-primary-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(197, 164, 126, 0.3);
+    background: var(--juventus-gold);
+}
+
+.btn-secondary-large {
+    background: transparent;
+    color: var(--juventus-gold);
+    border: 2px solid var(--juventus-gold);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 3rem);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: clamp(200px, 30vw, 300px);
+}
+
+.btn-secondary-large:hover {
+    background: var(--juventus-gold);
+    color: var(--juventus-black);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(197, 164, 126, 0.3);
+}
+
+/* Miglioramenti responsive per il titolo e sottotitolo */
+.hero-title {
+    font-size: clamp(3rem, 15vw, 8rem);
+    letter-spacing: -2px;
+    text-shadow: 0 0 30px rgba(0,0,0,0.5);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    max-width: min(90%, 800px);
+    margin: 0 auto;
+    margin-bottom: clamp(2rem, 5vh, 4rem);
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Responsive per i bottoni */
+.cta-buttons {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: min(90%, 800px);
+    margin: 0 auto;
+}
+
+/* Navbar responsive */
+.navbar {
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(1rem, 5vw, 3rem);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+.nav-buttons a {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+/* Media queries ottimizzate */
 @media (max-width: 768px) {
     .hero-content {
-        padding: 0;
+        padding: 0 clamp(1rem, 5vw, 2rem);
     }
-    
+
     .cta-buttons {
         flex-direction: column;
-        align-items: center;
+        width: 100%;
+        padding: 0 clamp(1rem, 5vw, 2rem);
     }
-    
+
     .btn-primary-large,
     .btn-secondary-large {
-        width: 90vw;
-        margin: 0.5rem 0;
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
+
+    .nav-buttons {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animazioni smooth */
+.hero-content {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </style>
