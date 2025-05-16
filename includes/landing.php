@@ -2,24 +2,27 @@
 /**
  * Landing page per utenti non autenticati
  * BiancoNeriHub - Social network per tifosi della Juventus
- * Versione interattiva creata il 15 maggio 2025
  */
 ?>
 
-<!-- CSS specifico per la landing page -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Stili CSS precedentemente aggiunti -->
 <style>
 /* Stili per la landing page interattiva */
 .hero-section {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
+    background: var(--juventus-gradient),
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
                 url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
-    min-height: 600px;
+    min-height: 700px;
     color: var(--juventus-white);
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
+    padding: 2rem;
 }
 
 .hero-section::before {
@@ -37,24 +40,42 @@
 .hero-content {
     position: relative;
     z-index: 2;
+    text-align: center;
+    max-width: 1000px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
 }
 
 .hero-title {
-    font-size: 5rem;
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -2px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     animation: fadeInDown 1.2s ease-out;
+    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     font-weight: 400;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 1.2s ease-out;
+    opacity: 0.9;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .trophy-slider {
@@ -509,6 +530,69 @@
     transform: translateY(0);
 }
 
+.cta-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+.cta-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-body);
+}
+
+.cta-primary {
+    background: var(--juventus-white);
+    color: var(--juventus-black);
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: var(--juventus-gold);
+    color: var(--juventus-black);
+}
+
+.cta-secondary {
+    background: transparent;
+    color: var(--juventus-white);
+    border: 2px solid var(--juventus-white);
+}
+
+.cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Effetto particelle sullo sfondo */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: var(--juventus-white);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+}
+
 /* Responsive classes */
 @media (max-width: 992px) {
     .hero-title {
@@ -547,40 +631,30 @@
 }
 </style>
 
-<!-- Hero section con video/immagine di sfondo -->
 <div class="hero-section">
-    <div class="hero-content container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center">
-                <h1 class="hero-title">
-                    <span class="d-block">Bianco</span>
-                    <span class="d-block" style="color: var(--juventus-gold);">Neri</span>
-                    <span class="d-block">Hub</span>
-                </h1>
-                <p class="hero-subtitle">Il social network definitivo per i veri tifosi della Juventus</p>
-                <div class="mt-5 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="300">
-                    <a href="<?php echo SITE_URL; ?>/register.php" class="btn btn-primary btn-lg me-3 px-4 py-3" style="animation: pulse 2s infinite;">
-                        <i class="fas fa-user-plus me-2"></i> Unisciti a noi
-                    </a>
-                    <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-outline-light btn-lg px-4 py-3">
-                        <i class="fas fa-sign-in-alt me-2"></i> Accedi
-                    </a>
-                </div>
-                <div class="social-proof mt-5">
-                    <div class="avatar-group">
-                        <div class="avatar"><img src="<?php echo ASSETS_URL; ?>/images/users/user1.jpg" alt="User"></div>
-                        <div class="avatar"><img src="<?php echo ASSETS_URL; ?>/images/users/user2.jpg" alt="User"></div>
-                        <div class="avatar"><img src="<?php echo ASSETS_URL; ?>/images/users/user3.jpg" alt="User"></div>
-                        <div class="avatar"><img src="<?php echo ASSETS_URL; ?>/images/users/user4.jpg" alt="User"></div>
-                        <div class="avatar"><img src="<?php echo ASSETS_URL; ?>/images/users/user5.jpg" alt="User"></div>
-                    </div>
-                    <span class="ms-3 text-white">+10.000 tifosi si sono già uniti</span>
-                </div>
-            </div>
+    <div class="particles">
+        <?php for($i = 0; $i < 50; $i++): ?>
+            <div class="particle" style="
+                left: <?php echo rand(0, 100); ?>%;
+                top: <?php echo rand(0, 100); ?>%;
+                width: <?php echo rand(2, 6); ?>px;
+                height: <?php echo rand(2, 6); ?>px;
+                animation-delay: <?php echo rand(0, 20000)/1000; ?>s;
+            "></div>
+        <?php endfor; ?>
+    </div>
+    
+    <div class="hero-content">
+        <h1 class="hero-title">BiancoNeriHub</h1>
+        <p class="hero-subtitle">Unisciti alla più grande community di tifosi juventini. Condividi la tua passione, resta aggiornato e connettiti con altri bianconeri in tutto il mondo.</p>
+        
+        <div class="cta-container">
+            <a href="register.php" class="cta-button cta-primary">Unisciti Ora</a>
+            <a href="about.php" class="cta-button cta-secondary">Scopri di più</a>
         </div>
     </div>
-
-    <!-- Trophy slider -->
+    
+    <!-- Trophy slider esistente -->
     <div class="trophy-slider">
         <div class="slider-container">
             <!-- Trofei duplicati per infinite loop -->
@@ -1219,6 +1293,13 @@ $(document).ready(function() {
         // Fallback se OwlCarousel non è caricato
         console.log('OwlCarousel not loaded, using fallback layout');
     }
+});
+
+// Aggiungiamo un effetto parallasse allo sfondo
+document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX * -0.01);
+    const moveY = (e.clientY * -0.01);
+    document.querySelector('.hero-section').style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
 });
 </script>
 

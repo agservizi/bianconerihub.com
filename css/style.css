@@ -3,13 +3,24 @@
  * BiancoNeriHub - Social network per tifosi della Juventus
  */
 
-/* Variabili colori Juventus */
+/* Variabili colori e design system Juventus */
 :root {
     --juventus-black: #000000;
     --juventus-white: #ffffff;
     --juventus-gold: #c5a47e;
     --juventus-gray: #4a4a4a;
     --juventus-light-gray: #f5f5f5;
+    
+    /* Nuove variabili */
+    --juventus-accent: #c5a47e;
+    --juventus-gradient: linear-gradient(135deg, var(--juventus-black) 0%, #1a1a1a 100%);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+    
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
 /* Personalizzazione colori Bootstrap */
