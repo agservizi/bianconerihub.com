@@ -37,102 +37,112 @@ html, body {
     overflow: hidden;
 }
 
+/* Reset totale e fix per Bootstrap */
+.container, 
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    max-width: none !important;
+    width: 100vw !important;
+}
+
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.col,
+[class*="col-"] {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
 /* Hero Section */
 .hero-section {
-    position: relative;
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                 url('<?php echo ASSETS_URL; ?>/images/juventus-stadium.jpg') no-repeat center center;
     background-size: cover;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .hero-content {
-    width: 100%;
+    width: 100vw;
+    text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    right: 0;
     padding: 0;
     margin: 0;
 }
 
 .hero-title {
-    font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: 900;
+    font-size: clamp(4rem, 15vw, 10rem);
     line-height: 1;
+    font-weight: 900;
+    text-transform: uppercase;
     margin: 0;
     padding: 0;
-    text-transform: uppercase;
-    color: var(--juventus-white);
-    letter-spacing: -2px;
-    font-family: var(--font-heading);
+    background: linear-gradient(135deg, var(--juventus-white) 0%, var(--juventus-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 100vw;
 }
 
 .hero-subtitle {
+    width: 100%;
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     margin: 2vh 0;
-    padding: 0 1rem;
+    padding: 0;
     color: var(--juventus-white);
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .cta-buttons {
-    margin: 4vh 0 0 0;
-    padding: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 1rem;
-}
-
-.btn-primary-large,
-.btn-secondary-large {
-    padding: 1rem 2.5rem;
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    font-weight: 600;
-    text-transform: uppercase;
-    border: none;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.btn-primary-large {
-    background: var(--juventus-gold);
-    color: var(--juventus-black);
-}
-
-.btn-secondary-large {
-    background: transparent;
-    border: 2px solid var(--juventus-gold);
-    color: var(--juventus-gold);
-}
-
-/* Rimozione ogni spazio vuoto tra le sezioni */
-section {
-    width: 100vw;
     margin: 0;
     padding: 0;
 }
 
-/* Fix per il navbar */
+/* Fix per navbar */
 .navbar {
+    width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem;
+    margin: 0;
     background: transparent;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 /* Social Preview Section */
@@ -225,20 +235,18 @@ section {
 /* Media Queries */
 @media (max-width: 768px) {
     .hero-content {
-        width: 100%;
+        padding: 0;
     }
-
+    
     .cta-buttons {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
-        padding: 0 1rem;
     }
-
+    
     .btn-primary-large,
     .btn-secondary-large {
-        width: 100%;
-        justify-content: center;
+        width: 90vw;
+        margin: 0.5rem 0;
     }
 }
 </style>

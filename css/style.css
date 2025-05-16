@@ -64,14 +64,26 @@
 /* Stile generale */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--juventus-light-gray);
+    background-color: var(--juventus-black);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 .main-container {
-    min-height: calc(100vh - 200px);
-    padding-top: 0.25rem !important;
-    margin-top: 0 !important;
-    margin-bottom: 2rem;
+    width: 100vw;
+    max-width: 100vw;
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
 }
 
 /* Navbar */
