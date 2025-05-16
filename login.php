@@ -28,11 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Validazione dei dati
     if (empty($username) || empty($password)) {
-        $errMsg = "Inserisci nome utente e password";
-    } else {
+        $errMsg = "Inserisci nome utente e password";    } else {
         // Query per verificare le credenziali
-        $query = "SELECT id, username, password, full_name, is_admin, account_status, is_verified FROM users WHERE username = '{$username}' OR email = '{$username}'";
-        $result = $conn->query($query);
+        $stmt = $conn->prepare("SELECT id, username, password, full_name, is_admin, account_status, is_verified FROM users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
         
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
@@ -52,18 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($rememberMe) {
                         $token = bin2hex(random_bytes(32));
                         $expires = time() + 30 * 24 * 60 * 60; // 30 giorni
-                        
-                        // Salviamo il token nel database
+                          // Salviamo il token nel database
                         $tokenHash = password_hash($token, PASSWORD_DEFAULT);
-                        $query = "INSERT INTO remember_tokens (user_id, token, expires) VALUES ({$user['id']}, '{$tokenHash}', FROM_UNIXTIME({$expires}))";
-                        $conn->query($query);
+                        $stmt = $conn->prepare("INSERT INTO remember_tokens (user_id, token, expires) VALUES (?, ?, FROM_UNIXTIME(?))");
+                        $stmt->bind_param("isi", $user['id'], $tokenHash, $expires);
+                        $stmt->execute();
                         
                         // Impostiamo il cookie
                         setcookie('remember_token', $user['id'] . ':' . $token, $expires, '/', '', false, true);
                     }
-                    
-                    // Aggiorniamo la data dell'ultimo accesso
-                    $conn->query("UPDATE users SET last_login = NOW() WHERE id = {$user['id']}");
+                      // Aggiorniamo la data dell'ultimo accesso
+                    $stmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
+                    $stmt->bind_param("i", $user['id']);
+                    $stmt->execute();
                     
                     // Se l'account non è verificato, mostriamo un avviso
                     if (!$user['is_verified']) {
